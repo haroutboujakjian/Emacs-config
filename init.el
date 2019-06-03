@@ -53,7 +53,7 @@
   :ensure t
   :config (which-key-mode))
 
-;; Org-mode stuff
+;; Org-mode bullets format
 (use-package org-bullets
   :ensure t
   :config
@@ -63,3 +63,6 @@
 (setq ido-everywhere t)
 (ido-mode 1)
 
+(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
+
+(windmove-default-keybindings) ;;shift key to move between windwos
