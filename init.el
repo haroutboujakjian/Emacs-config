@@ -11,10 +11,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (manoj-dark)))
- '(package-selected-packages (quote (which-key try use-package))))
+ '(package-selected-packages
+   (quote
+    (virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -22,19 +21,26 @@
  ;; If there is more than one, they won't work right.
  )
 
+
 (setq inhibit-startup-screen t)
 ;;(menu-bar-mode 0)
 (tool-bar-mode 0)
+(fset 'yes-or-no-p 'y-or-n-p)
+
 
 (setq make-backup-files nil) ; stop creating backup ~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
 
-(set-default-font "Ubuntu Mono-13")
+(set-default-font "Ubuntu Mono-12")
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
+(setq package-archives
+	    '(("melpa" . "https://melpa.org/packages/")
+	     ("org" . "http://orgmode.org/elpa/")))
+
+(use-package zenburn-theme
+  :ensure t)
 
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
@@ -66,3 +72,48 @@
 (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
 (windmove-default-keybindings) ;;shift key to move between windwos
+
+(use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    ))
+
+
+(use-package ox-reveal
+  :ensure ox-reveal
+  :config
+  (require 'ox-reveal)
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+  (setq org-reveal-mathjax t))
+
+(use-package htmlize
+  :ensure t)
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(use-package jedi
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hoop 'jedi:ac-setup))
+
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+
+(use-package virtualenvwrapper
+  :ensure t
+  :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell))
+
+(require 'python)
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "--simple-prompt -i")
