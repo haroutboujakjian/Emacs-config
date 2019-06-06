@@ -13,7 +13,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+    (ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -26,6 +26,11 @@
 ;;(menu-bar-mode 0)
 (tool-bar-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
+
+
+(setq frame-resize-pixelwise t)
+(set-frame-position (selected-frame) 4 5)
+(set-frame-size (selected-frame) 400 300 t)
 
 
 (setq make-backup-files nil) ; stop creating backup ~ files
@@ -58,6 +63,11 @@
 (use-package which-key
   :ensure t
   :config (which-key-mode))
+
+(use-package org
+  :ensure t
+  :pin org)
+
 
 ;; Org-mode bullets format
 (use-package org-bullets
@@ -117,3 +127,8 @@
 (require 'python)
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "--simple-prompt -i")
+
+(use-package ess
+  :ensure t
+  :init
+  (require 'ess-site))
