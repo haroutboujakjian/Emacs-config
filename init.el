@@ -34,6 +34,7 @@
 (tool-bar-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(global-hl-line-mode t)
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
