@@ -1,10 +1,17 @@
 (setq user-emacs-directory (file-truename "~/.emacs.d/"))
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives
+	    '(("melpa" . "https://melpa.org/packages/")
+	     ("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile (require 'use-package))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -27,6 +34,7 @@
 (tool-bar-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(global-hl-line-mode t)
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
@@ -37,12 +45,11 @@
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
 
-(set-default-font "Ubuntu Mono-12")
+(cond
+ ((string-equal system-type "gnu/linux")
+  (progn
+    (set-default-font "Ubuntu Mono-12"))))
 
-(require 'package)
-(setq package-archives
-	    '(("melpa" . "https://melpa.org/packages/")
-	     ("org" . "http://orgmode.org/elpa/")))
 
 (use-package zenburn-theme
   :ensure t)
@@ -53,9 +60,6 @@
 
 (setq evil-default-state 'emacs) ;; changes default state to emacs
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 
 (use-package try
 	     :ensure t)
