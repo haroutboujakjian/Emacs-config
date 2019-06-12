@@ -115,22 +115,25 @@
   :ensure t
   :init
   (add-hook 'python-mode-hook 'jedi:setup)
+  (add-hook 'pyvenv-mode-hook 'jedi:setup)
   (add-hook 'python-mode-hoop 'jedi:ac-setup))
+(setq jedi:setup-keys t)
+(setq jedi:complete-on-dot t)
 
+(require 'python)
+(setq python-shell-interpreter "ipython")
+(setq python-shell-interpreter-args "--simple-prompt -i")
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
+(setq elpy-rpc-python-command "python3")
 
 (use-package virtualenvwrapper
   :ensure t
   :config
   (venv-initialize-interactive-shells)
   (venv-initialize-eshell))
-
-(require 'python)
-(setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args "--simple-prompt -i")
 
 (use-package ess
   :ensure t
