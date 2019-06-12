@@ -28,17 +28,17 @@
  ;; If there is more than one, they won't work right.
  )
 
+(visual-line-mode t) ;soft wrap for lines
 
 (setq inhibit-startup-screen t)
 ;;(menu-bar-mode 0)
 (tool-bar-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 
-(global-hl-line-mode t)
+(global-hl-line-mode t) ;; highlights current line of cursor
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
-(set-frame-size (selected-frame) 400 300 t)
 
 
 (setq make-backup-files nil) ; stop creating backup ~ files
@@ -72,7 +72,6 @@
   :ensure t
   :pin org)
 
-
 ;; Org-mode bullets format
 (use-package org-bullets
   :ensure t
@@ -95,7 +94,7 @@
     (global-auto-complete-mode t)
     ))
 
-
+;; need to modify ox-reveal, not working properly
 (use-package ox-reveal
   :ensure ox-reveal
   :config
@@ -111,31 +110,23 @@
   :init
   (global-flycheck-mode t))
 
+(use-package ess ;; statistical packages
+  :ensure t
+  :init
+  (require 'ess-site))
+
 (use-package jedi
   :ensure t
   :init
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (add-hook 'pyvenv-mode-hook 'jedi:setup)
-  (add-hook 'python-mode-hoop 'jedi:ac-setup))
-(setq jedi:setup-keys t)
-(setq jedi:complete-on-dot t)
+   (add-hook 'python-mode-hook 'jedi:setup))
+   (add-hook 'pyvenv-mode-hook 'jedi:setup)
 
 (require 'python)
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "--simple-prompt -i")
+
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
-(setq elpy-rpc-python-command "python3")
 
-(use-package virtualenvwrapper
-  :ensure t
-  :config
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
-
-(use-package ess
-  :ensure t
-  :init
-  (require 'ess-site))
