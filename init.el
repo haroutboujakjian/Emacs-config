@@ -36,6 +36,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (global-hl-line-mode t) ;; highlights current line of cursor
+(add-hook 'python-mode-hook 'linum-mode) ;; displaying line numbers
+
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
@@ -123,7 +125,7 @@
 
 (require 'python)
 (setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args "--simple-prompt -i")
+(setq python-shell-interpreter-args "--simple-prompt -i --pylab")
 
 (use-package elpy
   :ensure t
