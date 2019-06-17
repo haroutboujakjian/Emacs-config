@@ -137,8 +137,8 @@
 ;;       python-shell-interpreter-args "console --simple-prompt")
 ;; (setq python-shell-completion-native-enable nil)
 
-(use-package elpy
-  :ensure t
-  :init
-  (elpy-enable))
+;; (use-package elpy
+;;   :ensure t
+;;   :init
+;;   (elpy-enable))
 
