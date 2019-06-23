@@ -20,7 +20,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+    (json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,12 +34,13 @@
   (exec-path-from-shell-initialize))
 
 
-(visual-line-mode t) ;soft wrap for lines
+(global-visual-line-mode t) ;soft wrap for lines
 
 (setq inhibit-startup-screen t)
 ;;(menu-bar-mode 0)
 (tool-bar-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq ring-bell-function 'ignore) ;; stop emacs sounds
 
 (global-hl-line-mode t) ;; highlights current line of cursor
 (add-hook 'python-mode-hook 'linum-mode) ;; displaying line numbers
@@ -112,6 +113,18 @@
 
 (use-package htmlize
   :ensure t)
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  (setq web-mode-ac-sources-alist
+	'(("css" . (ac-source-css-property))
+	  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+  )
+
+(use-package json-mode
+  :ensure t) ;; additional syntax highlighting on top of js-mode
 
 (use-package flycheck
   :ensure t
