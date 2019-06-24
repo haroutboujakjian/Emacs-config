@@ -33,6 +33,8 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
+(setq-default tab-width 4)
+(setq tab-stop-list (number-sequence 4 200 4))
 
 (global-visual-line-mode t) ;soft wrap for lines
 
