@@ -1,3 +1,5 @@
+;;; init.el --- Initialization file for Emacs
+;;; Commentary: Emacs Startup File --- initialization for Emacs
 (setq user-emacs-directory (file-truename "~/.emacs.d/"))
 
 (require 'package)
