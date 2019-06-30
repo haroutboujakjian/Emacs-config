@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,6 +37,8 @@
 
 (setq-default tab-width 4)
 (setq tab-stop-list (number-sequence 4 200 4))
+
+(electric-pair-mode 1) ; closes brackets automatically
 
 (global-visual-line-mode t) ;soft wrap for lines
 
@@ -66,6 +68,13 @@
 
 (use-package zenburn-theme
   :ensure t)
+
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-window-width 35)
+  (setq neo-persist-show nil))
 
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
