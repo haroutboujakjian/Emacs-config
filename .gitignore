@@ -2,4 +2,7 @@ auto-save-list
 elpa
 evil
 session*
+ac-comphist.dat
+.python-environments
+ido.last
 
