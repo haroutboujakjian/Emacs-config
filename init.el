@@ -5,8 +5,8 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives
-	    '(("melpa" . "https://melpa.org/packages/")
-	     ("org" . "http://orgmode.org/elpa/")))
+	  '(("melpa" . "https://melpa.org/packages/")
+		("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -80,11 +80,11 @@
 (require 'evil)
 (evil-mode 1)
 
-(setq evil-default-state 'emacs) ;; changes default state to emacs
+;;(setq evil-default-state 'emacs) ;; changes default state to emacs
 
 
 (use-package try
-	     :ensure t)
+  :ensure t)
 
 (use-package which-key
   :ensure t
@@ -99,7 +99,7 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook 'org-bullets-mode)) 
-  
+
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
@@ -132,9 +132,18 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
   (setq web-mode-ac-sources-alist
-	'(("css" . (ac-source-css-property))
-	  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+		'(("css" . (ac-source-css-property))
+		  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
   )
+
+(use-package js2-mode
+  :ensure t
+  :ensure ac-js2
+  :init
+  (progn
+	(add-hook 'js-mode-hook 'js2-minor-mode)
+	(add-hook 'js2-mode-hook 'ac-js2-mode)
+	))
 
 (use-package json-mode
   :ensure t) ;; additional syntax highlighting on top of js-mode
@@ -152,8 +161,8 @@
 (use-package jedi
   :ensure t
   :init
-   (add-hook 'python-mode-hook 'jedi:setup))
-   (add-hook 'pyvenv-mode-hook 'jedi:setup)
+  (add-hook 'python-mode-hook 'jedi:setup))
+(add-hook 'pyvenv-mode-hook 'jedi:setup)
 
 (require 'python)
 (setq python-shell-interpreter "ipython")
