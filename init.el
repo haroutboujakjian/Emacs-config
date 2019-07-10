@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -49,7 +49,7 @@
 (setq ring-bell-function 'ignore) ;; stop emacs sounds
 
 (global-hl-line-mode t) ;; highlights current line of cursor
-(add-hook 'python-mode-hook 'linum-mode) ;; displaying line numbers
+;;(add-hook 'python-mode-hook 'linum-mode) ;; displaying line numbers
 
 
 (setq frame-resize-pixelwise t)
@@ -107,6 +107,24 @@
 (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
 (windmove-default-keybindings) ;;shift key to move between windwos
+
+;;enables use of search engine
+(use-package engine-mode
+  :defer 3
+  :config
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d")
+
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "g")
+
+ (defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s"
+    :keybinding "s")
+  (engine-mode t))
+
 
 (use-package auto-complete
   :ensure t
@@ -176,4 +194,3 @@
 ;;   :ensure t
 ;;   :init
 ;;   (elpy-enable))
-
