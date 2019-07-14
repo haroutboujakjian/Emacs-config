@@ -191,16 +191,7 @@
   (add-hook 'python-mode-hook 'jedi:setup))
 (add-hook 'pyvenv-mode-hook 'jedi:setup)
 
+;; ipython shell with PyQt5 plot backend
 (require 'python)
 (setq python-shell-interpreter "ipython")
 (setq python-shell-interpreter-args "--simple-prompt -i --pylab")
-
-;; (setq python-shell-interpreter "jupyter"
-;;       python-shell-interpreter-args "console --simple-prompt")
-;; (setq python-shell-completion-native-enable nil)
-
-;; (use-package elpy
-;;   :ensure t
-;;   :init
-;;   (elpy-enable))
-
