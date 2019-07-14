@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -82,7 +82,6 @@
 
 ;;(setq evil-default-state 'emacs) ;; changes default state to emacs
 
-
 (use-package try
   :ensure t)
 
@@ -124,6 +123,14 @@
     "https://stackoverflow.com/search?q=%s"
     :keybinding "s")
   (engine-mode t))
+
+
+(use-package magit
+  :ensure t
+  :init
+  (progn
+	(bind-key "C-x g" 'magit-status)
+	))
 
 
 (use-package auto-complete
