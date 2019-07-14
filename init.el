@@ -69,13 +69,6 @@
 (use-package zenburn-theme
   :ensure t)
 
-(use-package neotree
-  :ensure t
-  :config
-  (global-set-key [f8] 'neotree-toggle)
-  (setq neo-window-width 35)
-  (setq neo-persist-show nil))
-
 (add-to-list 'load-path "~/.emacs.d/evil")
 (require 'evil)
 (evil-mode 1)
