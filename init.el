@@ -22,7 +22,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -171,6 +171,15 @@
   :init
   (global-flycheck-mode t))
 
+;; Scala section
+(use-package ensime
+  :ensure t
+  :config
+  (add-to-list 'exec-path "/usr/local/bin")
+)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+
 (use-package ess ;; statistical packages
   :ensure t
   :init
@@ -194,3 +203,4 @@
 ;;   :ensure t
 ;;   :init
 ;;   (elpy-enable))
+
