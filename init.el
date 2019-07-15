@@ -6,6 +6,8 @@
 (setq package-enable-at-startup nil)
 (setq package-archives
 	  '(("melpa" . "https://melpa.org/packages/")
+		("melpa-stable" . "https://stable.melpa.org/packages/")
+		("gnu" . "https://elpa.gnu.org/packages/")
 		("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
@@ -22,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -70,16 +72,17 @@
 (use-package zenburn-theme
   :ensure t)
 
-(add-to-list 'load-path "~/.emacs.d/evil")
-(require 'evil)
-(evil-mode 1)
-
-(use-package evil-surround
+(use-package evil
   :ensure t
   :config
-  (global-evil-surround-mode 1)
-  )
+  (evil-mode 1)
 
+  (use-package evil-surround
+	:ensure t
+	:config
+	(global-evil-surround-mode 1)
+	)
+  )
 ;;(setq evil-default-state 'emacs) ;; changes default state to emacs
 
 (use-package try
