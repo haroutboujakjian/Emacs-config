@@ -1,0 +1,2 @@
+* Emacs configuration
+This init.el contains my current emacs configuration for people who are interested. I am always testing out new packages and continually attempting to improve my workflow.
