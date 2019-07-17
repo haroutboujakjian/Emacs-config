@@ -23,8 +23,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-	(undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	 (quote
+		(aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -79,13 +79,14 @@
   (evil-mode 1)
 
   (use-package evil-surround
-	:ensure t
-	:config
-	(global-evil-surround-mode 1)
-	)
+		:ensure t
+		:config
+		(global-evil-surround-mode 1)
+		)
   )
 ;;(setq evil-default-state 'emacs) ;; changes default state to emacs
 
+;; indents lines even with copy and paste
 (use-package aggressive-indent
   :ensure t
   :config
