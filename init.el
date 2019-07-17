@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+	(undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -37,8 +37,8 @@
 (when (memq window-system '(mac ns x))
   (exec-path-from-shell-initialize))
 
-(setq-default tab-width 4)
-(setq tab-stop-list (number-sequence 4 200 4))
+(setq-default tab-width 2)
+(setq tab-stop-list (number-sequence 2 200 2))
 
 (electric-pair-mode 1) ; closes brackets automatically
 
@@ -72,6 +72,7 @@
 (use-package zenburn-theme
   :ensure t)
 
+
 (use-package evil
   :ensure t
   :config
@@ -84,6 +85,12 @@
 	)
   )
 ;;(setq evil-default-state 'emacs) ;; changes default state to emacs
+
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1)
+  )
 
 (use-package try
   :ensure t)
@@ -100,7 +107,7 @@
 (use-package org-bullets
   :ensure t
   :config
-  (add-hook 'org-mode-hook 'org-bullets-mode)) 
+  (add-hook 'org-mode-hook 'org-bullets-mode))
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
