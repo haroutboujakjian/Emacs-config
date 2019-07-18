@@ -1,12 +1,10 @@
 auto-save-list
 elpa
-evil
 session*
 ac-comphist.dat
 .python-environments
 ido.last
 url
-
 transient
 eshell
 /network-security.data
