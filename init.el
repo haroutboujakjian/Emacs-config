@@ -180,19 +180,22 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	(setq web-mode-enable-current-column-highlight t)
   (setq web-mode-ac-sources-alist
-		'(("css" . (ac-source-css-property))
-		  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+				'(("css" . (ac-source-css-property))
+					("html" . (ac-source-words-in-buffer ac-source-abbrev))
+					("js" . (ac-js2))))
   )
 
-(use-package js2-mode
-  :ensure t
-  :ensure ac-js2
-  :init
-  (progn
-	(add-hook 'js-mode-hook 'js2-minor-mode)
-	(add-hook 'js2-mode-hook 'ac-js2-mode)
-	))
+;; (use-package js2-mode
+;;   :ensure t
+;;   :ensure ac-js2
+;;   :init
+;;   (progn
+;; 	(add-hook 'js-mode-hook 'js2-minor-mode)
+;; 	(add-hook 'js2-mode-hook 'ac-js2-mode)
+;; 	))
 
 (use-package json-mode
   :ensure t) ;; additional syntax highlighting on top of js-mode
