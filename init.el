@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
 	 (quote
-		(ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+		(org-pdfview pdf-tools ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -164,6 +164,17 @@
     (ac-config-default)
     (global-auto-complete-mode t)
     ))
+
+;; section for pdf viewer
+(pdf-tools-install)
+(use-package pdf-tools
+	:ensure t)
+
+(use-package org-pdfview
+	:ensure t)
+
+(require 'pdf-tools)
+(require 'org-pdfview)
 
 ;; need to modify ox-reveal, not working properly
 (use-package ox-reveal
