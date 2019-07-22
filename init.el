@@ -194,7 +194,11 @@
 	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 	(setq web-mode-enable-current-column-highlight t)
   (setq web-mode-ac-sources-alist
+<<<<<<< HEAD
 		'(("css" . (ac-source-css-property))
+=======
+				'(("css" . (ac-source-css-property))
+>>>>>>> 0894b9e923e25d429bd7becae74b2b47370ec0a7
 					("html" . (ac-source-words-in-buffer ac-source-abbrev))
 					("js" . (ac-js2-mode))))
   )
