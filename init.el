@@ -165,6 +165,17 @@
     (global-auto-complete-mode t)
     ))
 
+;; section for pdf viewer
+(pdf-tools-install)
+(use-package pdf-tools
+	:ensure t)
+
+(use-package org-pdfview
+	:ensure t)
+
+(require 'pdf-tools)
+(require 'org-pdfview)
+
 ;; need to modify ox-reveal, not working properly
 (use-package ox-reveal
   :ensure ox-reveal
@@ -180,19 +191,31 @@
   :ensure t
   :config
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	(setq web-mode-enable-current-column-highlight t)
   (setq web-mode-ac-sources-alist
 		'(("css" . (ac-source-css-property))
-		  ("html" . (ac-source-words-in-buffer ac-source-abbrev))))
+					("html" . (ac-source-words-in-buffer ac-source-abbrev))
+					("js" . (ac-js2-mode))))
   )
 
-(use-package js2-mode
-  :ensure t
-  :ensure ac-js2
-  :init
-  (progn
-	(add-hook 'js-mode-hook 'js2-minor-mode)
-	(add-hook 'js2-mode-hook 'ac-js2-mode)
-	))
+(defun my-web-mode-hook()
+	"Hooks for Web mode. Adjust indents"
+	(setq web-mode-markup-indent-offset 2)
+	(setq web-mode-css-indent-offset 2)
+	(setq web-mode-code-indent-offset 2)
+	)
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+
+;; (use-package js2-mode
+;;   :ensure t
+;;   :ensure ac-js2
+;;   :init
+;;   (progn
+;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
+;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
+;; 		))
 
 (use-package json-mode
   :ensure t) ;; additional syntax highlighting on top of js-mode
