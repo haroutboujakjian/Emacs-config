@@ -5,10 +5,10 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives
-	  '(("melpa" . "https://melpa.org/packages/")
-		("melpa-stable" . "https://stable.melpa.org/packages/")
-		("gnu" . "https://elpa.gnu.org/packages/")
-		("org" . "http://orgmode.org/elpa/")))
+			'(("melpa" . "https://melpa.org/packages/")
+				("melpa-stable" . "https://stable.melpa.org/packages/")
+				("gnu" . "https://elpa.gnu.org/packages/")
+				("org" . "http://orgmode.org/elpa/")))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -66,7 +66,19 @@
 (cond
  ((string-equal system-type "gnu/linux")
   (progn
-    (set-default-font "Ubuntu Mono-12"))))
+    (set-frame-font "Ubuntu Mono-12")
+		
+		;; section for pdf viewer
+		(use-package pdf-tools
+			:ensure t)
+
+		(use-package org-pdfview
+			:ensure t)
+
+		(pdf-tools-install)
+		(require 'pdf-tools)
+		(require 'org-pdfview)
+		)))
 
 
 (use-package zenburn-theme
@@ -143,7 +155,7 @@
     "https://github.com/search?ref=simplesearch&q=%s"
     :keybinding "g")
 
- (defengine stack-overflow
+	(defengine stack-overflow
     "https://stackoverflow.com/search?q=%s"
     :keybinding "s")
   (engine-mode t))
@@ -153,8 +165,8 @@
   :ensure t
   :init
   (progn
-	(bind-key "C-x g" 'magit-status)
-	))
+		(bind-key "C-x g" 'magit-status)
+		))
 
 
 (use-package auto-complete
@@ -164,17 +176,6 @@
     (ac-config-default)
     (global-auto-complete-mode t)
     ))
-
-;; section for pdf viewer
-(pdf-tools-install)
-(use-package pdf-tools
-	:ensure t)
-
-(use-package org-pdfview
-	:ensure t)
-
-(require 'pdf-tools)
-(require 'org-pdfview)
 
 ;; need to modify ox-reveal, not working properly
 (use-package ox-reveal
@@ -194,11 +195,7 @@
 	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 	(setq web-mode-enable-current-column-highlight t)
   (setq web-mode-ac-sources-alist
-<<<<<<< HEAD
-		'(("css" . (ac-source-css-property))
-=======
 				'(("css" . (ac-source-css-property))
->>>>>>> 0894b9e923e25d429bd7becae74b2b47370ec0a7
 					("html" . (ac-source-words-in-buffer ac-source-abbrev))
 					("js" . (ac-js2-mode))))
   )
@@ -234,7 +231,7 @@
   :ensure t
   :config
   (add-to-list 'exec-path "/usr/local/bin")
-)
+	)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 
