@@ -2,6 +2,9 @@
 ;;; Commentary: Emacs Startup File --- initialization for Emacs
 (setq user-emacs-directory (file-truename "~/.emacs.d/"))
 
+;; shortcut to pull up init file
+(global-set-key [f7] (lambda () (interactive) (find-file user-init-file)))
+
 (require 'package)
 (setq package-enable-at-startup nil)
 (setq package-archives
