@@ -60,6 +60,7 @@
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
 
+(winner-mode 1) ;; history of window configurations to back to previous layout
 
 (setq make-backup-files nil) ; stop creating backup ~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
