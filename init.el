@@ -56,6 +56,7 @@
 (global-hl-line-mode t) ;; highlights current line of cursor
 ;;(add-hook 'python-mode-hook 'linum-mode) ;; displaying line numbers
 
+(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
