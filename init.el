@@ -27,7 +27,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
 	 (quote
-		(linum-relative org-pdfview pdf-tools ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+		(ob-ipython linum-relative org-pdfview pdf-tools ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -136,6 +136,20 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook 'org-bullets-mode))
+
+(use-package ob-ipython
+	:ensure t)
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((ipython . t)
+	 ))
+
+(setq org-confirm-babel-evaluate nil)
+(setq org-display-inline-images t)
+(setq org-startup-with-inline-images t)
+(setq org-redisplay-inline-images t)
+(setq org-toggle-inline-images t)
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
