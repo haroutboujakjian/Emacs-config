@@ -137,15 +137,20 @@
   :config
   (add-hook 'org-mode-hook 'org-bullets-mode))
 
+;; org mode ipython
 (use-package ob-ipython
 	:ensure t)
 
+;; languages where code executes in org mode
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((ipython . t)
 	 ))
 
+;; evaluates code block in org mode with additional confirmation
 (setq org-confirm-babel-evaluate nil)
+
+;; setting for org mode inline images. does not display automatically.
 (setq org-display-inline-images t)
 (setq org-startup-with-inline-images t)
 (setq org-redisplay-inline-images t)
