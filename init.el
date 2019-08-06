@@ -27,7 +27,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
 	 (quote
-		(all-the-icons-install-fonts doom-modeline ob-ipython linum-relative org-pdfview pdf-tools ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
+		(all-the-icons all-the-icons-install-fonts doom-modeline ob-ipython linum-relative org-pdfview pdf-tools ido-vertical-mode highlight-indentation-mode aggressive-indent undo-tree evil evil-surround magit ensime engine-mode ac-js2 js2-mode neotree json-mode web-mode exec-path-from-shell ess virtualenvwrapper elpy jedi flycheck zenburn-theme which-key use-package try ox-reveal org-bullets htmlize auto-complete))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -89,12 +89,12 @@
 (use-package zenburn-theme
   :ensure t)
 
+;; powerline on bottom
 (use-package doom-modeline
 	:ensure t
 	:hook
 	(after-init . doom-modeline-mode)
-	:config
-	(setq doom-modeline-height 10))
+	)
 
 (use-package all-the-icons
 	:ensure t)
