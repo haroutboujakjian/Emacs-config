@@ -34,36 +34,6 @@
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
 
-(cond
- ((string-equal system-type "gnu/linux")
-  (progn
-    (set-frame-font "Ubuntu Mono-12")
-		
-		;; section for pdf viewer
-		(use-package pdf-tools
-			:ensure t)
-
-		(use-package org-pdfview
-			:ensure t)
-
-		(pdf-tools-install)
-		(require 'pdf-tools)
-		(require 'org-pdfview)
-		)))
-
-
-(use-package zenburn-theme
-  :ensure t)
-
-;; powerline on bottom
-(use-package doom-modeline
-	:ensure t
-	:hook
-	(after-init . doom-modeline-mode)
-	)
-
-(use-package all-the-icons
-	:ensure t)
 
 ;; highlights line indents, does not work globally
 (use-package highlight-indentation
@@ -85,6 +55,83 @@
 (use-package which-key
   :ensure t
   :config (which-key-mode))
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; find files opens vertically
+(use-package ido-vertical-mode
+	:ensure t
+	:config
+	(ido-vertical-mode 1)
+	)
+
+(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
+
+(windmove-default-keybindings) ;;shift key to move between windwos
+
+
+;; need to modify ox-reveal, not working properly
+(use-package ox-reveal
+  :ensure ox-reveal
+  :config
+  (require 'ox-reveal)
+  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+  (setq org-reveal-mathjax t))
+
+(use-package htmlize
+  :ensure t)
+
+;; (use-package js2-mode
+;;   :ensure t
+;;   :ensure ac-js2
+;;   :init
+;;   (progn
+;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
+;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
+;; 		))
+
+(use-package json-mode
+  :ensure t) ;; additional syntax highlighting on top of js-mode
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+#+end_src
+
+* Linux specific config
+#+begin_src emacs-lisp
+
+(cond
+ ((string-equal system-type "gnu/linux")
+  (progn
+    (set-frame-font "Ubuntu Mono-12")
+		
+		;; section for pdf viewer
+		(use-package pdf-tools
+			:ensure t)
+
+		(use-package org-pdfview
+			:ensure t)
+
+		(pdf-tools-install)
+		(require 'pdf-tools)
+		(require 'org-pdfview)
+		)))
+
+#+end_src
+* Themes
+#+begin_src emacs-lisp
+
+(use-package zenburn-theme
+  :ensure t)
+
+#+end_src
+* Org Mode
+	#+begin_src emacs-lisp
 
 (use-package org
   :ensure t
@@ -115,113 +162,7 @@
 (setq org-redisplay-inline-images t)
 (setq org-toggle-inline-images t)
 
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-;; find files opens vertically
-(use-package ido-vertical-mode
-	:ensure t
-	:config
-	(ido-vertical-mode 1)
-	)
-
-(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
-
-(windmove-default-keybindings) ;;shift key to move between windwos
-
-;;enables use of search engine
-(use-package engine-mode
-  :defer 3
-  :config
-  (defengine duckduckgo
-    "https://duckduckgo.com/?q=%s"
-    :keybinding "d")
-
-  (defengine github
-    "https://github.com/search?ref=simplesearch&q=%s"
-    :keybinding "g")
-
-	(defengine stack-overflow
-    "https://stackoverflow.com/search?q=%s"
-    :keybinding "s")
-  (engine-mode t))
-
-
-(use-package magit
-  :ensure t
-  :init
-  (progn
-		(bind-key "C-x g" 'magit-status)
-		))
-
-
-(use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
-
-;; need to modify ox-reveal, not working properly
-(use-package ox-reveal
-  :ensure ox-reveal
-  :config
-  (require 'ox-reveal)
-  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-  (setq org-reveal-mathjax t))
-
-(use-package htmlize
-  :ensure t)
-
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-	(setq web-mode-enable-current-column-highlight t)
-  (setq web-mode-ac-sources-alist
-				'(("css" . (ac-source-css-property))
-					("html" . (ac-source-words-in-buffer ac-source-abbrev))
-					("js" . (ac-js2-mode))))
-  )
-
-(defun my-web-mode-hook()
-	"Hooks for Web mode. Adjust indents"
-	(setq web-mode-markup-indent-offset 2)
-	(setq web-mode-css-indent-offset 2)
-	(setq web-mode-code-indent-offset 2)
-	)
-(add-hook 'web-mode-hook 'my-web-mode-hook)
-
-
-;; (use-package js2-mode
-;;   :ensure t
-;;   :ensure ac-js2
-;;   :init
-;;   (progn
-;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
-;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
-;; 		))
-
-(use-package json-mode
-  :ensure t) ;; additional syntax highlighting on top of js-mode
-
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode t))
-
-;; Scala section
-(use-package ensime
-  :ensure t
-  :config
-  (add-to-list 'exec-path "/usr/local/bin")
-	)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
-#+end_src
-
+	#+end_src
 * Evil
 	#+begin_src emacs-lisp
 
@@ -264,4 +205,96 @@
   :init
   (require 'ess-site))
 	
+#+end_src
+* Scala
+#+begin_src emacs-lisp
+
+(use-package ensime
+  :ensure t
+  :config
+  (add-to-list 'exec-path "/usr/local/bin")
+	)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+#+end_src
+* Web Mode
+#+begin_src emacs-lisp
+
+(use-package web-mode
+  :ensure t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+	(setq web-mode-enable-current-column-highlight t)
+  (setq web-mode-ac-sources-alist
+				'(("css" . (ac-source-css-property))
+					("html" . (ac-source-words-in-buffer ac-source-abbrev))
+					("js" . (ac-js2-mode))))
+  )
+
+(defun my-web-mode-hook()
+	"Hooks for Web mode. Adjust indents"
+	(setq web-mode-markup-indent-offset 2)
+	(setq web-mode-css-indent-offset 2)
+	(setq web-mode-code-indent-offset 2)
+	)
+(add-hook 'web-mode-hook 'my-web-mode-hook)
+
+#+end_src
+* Engine Mode
+#+begin_src emacs-lisp
+
+;;enables use of search engine
+(use-package engine-mode
+  :defer 3
+  :config
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d")
+
+  (defengine github
+    "https://github.com/search?ref=simplesearch&q=%s"
+    :keybinding "g")
+
+	(defengine stack-overflow
+    "https://stackoverflow.com/search?q=%s"
+    :keybinding "s")
+  (engine-mode t))
+
+#+end_src
+* Magit
+#+begin_src emacs-lisp
+
+(use-package magit
+  :ensure t
+  :init
+  (progn
+		(bind-key "C-x g" 'magit-status)
+		))
+
+#+end_src
+* Powerline
+#+begin_src emacs-lisp
+
+(use-package doom-modeline
+	:ensure t
+	:hook
+	(after-init . doom-modeline-mode)
+	)
+
+(use-package all-the-icons
+	:ensure t)
+
+#+end_src
+* Autocomplete
+#+begin_src emacs-lisp
+
+(use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)
+    ))
+
 #+end_src
