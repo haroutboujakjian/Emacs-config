@@ -76,14 +76,14 @@
 	#+begin_src emacs-lisp
 
 (use-package org
-  :ensure t
-  :pin org)
+	:ensure t
+	:pin org)
 
 ;; Org-mode bullets format
 (use-package org-bullets
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook 'org-bullets-mode))
+	:ensure t
+	:config
+	(add-hook 'org-mode-hook 'org-bullets-mode))
 
 ;; org mode ipython
 (use-package ob-ipython
@@ -126,43 +126,49 @@
 
 	#+end_src
 	
-* Python
-	#+begin_src emacs-lisp 
+* Programming Languages
+** Python
+	 #+begin_src emacs-lisp 
 	
-(use-package jedi
-  :ensure t
-  :init
-  (add-hook 'python-mode-hook 'jedi:setup))
-(add-hook 'pyvenv-mode-hook 'jedi:setup)
+ (use-package jedi
+   :ensure t
+   :init
+   (add-hook 'python-mode-hook 'jedi:setup))
+ (add-hook 'pyvenv-mode-hook 'jedi:setup)
 
-;; ipython shell with PyQt5 plot backend
-(require 'python)
-(setq python-shell-interpreter "ipython")
-(setq python-shell-interpreter-args "--simple-prompt -i --pylab")
+ ;; ipython shell with PyQt5 plot backend
+ (require 'python)
+ (setq python-shell-interpreter "ipython")
+ (setq python-shell-interpreter-args "--simple-prompt -i --pylab")
 
-	#+end_src
+	 #+end_src
 
-* R/ESS
-	#+begin_src emacs-lisp 
+** R/ESS
+	 
+	 #+begin_src emacs-lisp 
 
-(use-package ess ;; statistical packages
-  :ensure t
-  :init
-  (require 'ess-site))
+ (use-package ess ;; statistical packages
+   :ensure t
+   :init
+   (require 'ess-site))
 	
-	#+end_src
-* Scala
-	#+begin_src emacs-lisp
+	 #+end_src
 
-(use-package ensime
-  :ensure t
-  :config
-  (add-to-list 'exec-path "/usr/local/bin")
-	)
-(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+** Scala
 
-	#+end_src
-* Web Mode
+	 #+begin_src emacs-lisp
+
+ (use-package ensime
+   :ensure t
+   :config
+   (add-to-list 'exec-path "/usr/local/bin")
+	 )
+ (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+
+	 #+end_src
+
+* Web Specific
+** Web Mode
 	#+begin_src emacs-lisp
 
 (use-package web-mode
@@ -186,17 +192,16 @@
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 	#+end_src
-* JSON
+** JSON
+	 #+begin_src emacs-lisp
+
+ (use-package json-mode
+   :ensure t) ;; additional syntax highlighting on top of js-mode
+
+	 #+end_src
+* Search Engine
 	#+begin_src emacs-lisp
 
-(use-package json-mode
-  :ensure t) ;; additional syntax highlighting on top of js-mode
-
-	#+end_src
-* Engine Mode
-	#+begin_src emacs-lisp
-
-;;enables use of search engine
 (use-package engine-mode
   :defer 3
   :config
