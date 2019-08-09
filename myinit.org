@@ -1,7 +1,7 @@
 #+STARTUP: overview
 
 * General 
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (electric-pair-mode 1) ; closes brackets automatically
 
@@ -22,56 +22,15 @@
 
 (windmove-default-keybindings) ;;shift key to move between windwos
 
-#+end_src
+	;; (setq frame-resize-pixelwise t)
+	;; (set-frame-position (selected-frame) 4 5)
 
-* Config
+	(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
-#+begin_src emacs-lisp
-
-(use-package exec-path-from-shell
-  :ensure t)
-(when (memq window-system '(mac ns x))
-  (exec-path-from-shell-initialize))
-
-(setq-default tab-width 2)
-(setq tab-stop-list (number-sequence 2 200 2))
-
-
-(setq frame-resize-pixelwise t)
-(set-frame-position (selected-frame) 4 5)
-
-
-(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
-
-
-;; need to modify ox-reveal, not working properly
-(use-package ox-reveal
-  :ensure ox-reveal
-  :config
-  (require 'ox-reveal)
-  (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-  (setq org-reveal-mathjax t))
-
-(use-package htmlize
-  :ensure t)
-
-;; (use-package js2-mode
-;;   :ensure t
-;;   :ensure ac-js2
-;;   :init
-;;   (progn
-;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
-;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
-;; 		))
-
-(use-package json-mode
-  :ensure t) ;; additional syntax highlighting on top of js-mode
-
-
-#+end_src
+	#+end_src
 
 * Linux specific config
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (cond
  ((string-equal system-type "gnu/linux")
@@ -90,16 +49,16 @@
 		(require 'org-pdfview)
 		)))
 
-#+end_src
+	#+end_src
 * Themes
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package zenburn-theme
   :ensure t)
 
-#+end_src
+	#+end_src
 * Ido
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
@@ -112,7 +71,7 @@
 	(ido-vertical-mode 1)
 	)
 
-#+end_src
+	#+end_src
 * Org Mode
 	#+begin_src emacs-lisp
 
@@ -184,16 +143,16 @@
 	#+end_src
 
 * R/ESS
-#+begin_src emacs-lisp 
+	#+begin_src emacs-lisp 
 
 (use-package ess ;; statistical packages
   :ensure t
   :init
   (require 'ess-site))
 	
-#+end_src
+	#+end_src
 * Scala
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package ensime
   :ensure t
@@ -202,9 +161,9 @@
 	)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
-#+end_src
+	#+end_src
 * Web Mode
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package web-mode
   :ensure t
@@ -226,9 +185,16 @@
 	)
 (add-hook 'web-mode-hook 'my-web-mode-hook)
 
-#+end_src
+	#+end_src
+* JSON
+	#+begin_src emacs-lisp
+
+(use-package json-mode
+  :ensure t) ;; additional syntax highlighting on top of js-mode
+
+	#+end_src
 * Engine Mode
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 ;;enables use of search engine
 (use-package engine-mode
@@ -247,9 +213,9 @@
     :keybinding "s")
   (engine-mode t))
 
-#+end_src
+	#+end_src
 * Magit
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package magit
   :ensure t
@@ -258,16 +224,16 @@
 		(bind-key "C-x g" 'magit-status)
 		))
 
-#+end_src
+	#+end_src
 * Shell
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 ;; opens shell in current buffer
 (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
-#+end_src
+	#+end_src
 * Powerline
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package doom-modeline
 	:ensure t
@@ -278,9 +244,9 @@
 (use-package all-the-icons
 	:ensure t)
 
-#+end_src
+	#+end_src
 * Autocomplete
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package auto-complete
   :ensure t
@@ -290,9 +256,9 @@
     (global-auto-complete-mode t)
     ))
 
-#+end_src
+	#+end_src
 * Indent related
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 ;; highlights line indents, does not work globally
 (use-package highlight-indentation
@@ -307,21 +273,57 @@
   (global-aggressive-indent-mode 1)
   )
 
-#+end_src
+	#+end_src
 * Which key
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 	
 (use-package which-key
   :ensure t
   :config (which-key-mode))
 
-#+end_src
+	#+end_src
 * Flycheck
-#+begin_src emacs-lisp
+	#+begin_src emacs-lisp
 
 (use-package flycheck
   :ensure t
   :init
   (global-flycheck-mode t))
 
-#+end_src
+	#+end_src
+* TODO Still need to move these arounds
+
+	#+begin_src emacs-lisp
+
+	(use-package exec-path-from-shell
+		:ensure t)
+	(when (memq window-system '(mac ns x))
+		(exec-path-from-shell-initialize))
+
+	(setq-default tab-width 2)
+	(setq tab-stop-list (number-sequence 2 200 2))
+
+
+	;; need to modify ox-reveal, not working properly
+	(use-package ox-reveal
+		:ensure ox-reveal
+		:config
+		(require 'ox-reveal)
+		(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+		(setq org-reveal-mathjax t))
+
+	(use-package htmlize
+		:ensure t)
+
+	;; (use-package js2-mode
+	;;   :ensure t
+	;;   :ensure ac-js2
+	;;   :init
+	;;   (progn
+	;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
+	;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
+	;; 		))
+
+
+	#+end_src
+
