@@ -1,6 +1,31 @@
 #+STARTUP: overview
 
+* General 
+#+begin_src emacs-lisp
+
+(electric-pair-mode 1) ; closes brackets automatically
+
+(global-visual-line-mode t) ;soft wrap for lines
+
+(global-hl-line-mode t) ;; highlights current line of cursor
+
+(setq inhibit-startup-screen t)
+(tool-bar-mode 0)
+(fset 'yes-or-no-p 'y-or-n-p)
+(setq ring-bell-function 'ignore) ;; stop emacs sounds
+
+(setq make-backup-files nil) ; stop creating backup ~ files
+(setq auto-save-default nil) ; stop creating #autosave# files
+(setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
+
+(winner-mode 1) ;; history of window configurations to back to previous layout
+
+(windmove-default-keybindings) ;;shift key to move between windwos
+
+#+end_src
+
 * Config
+
 #+begin_src emacs-lisp
 
 (use-package exec-path-from-shell
@@ -11,65 +36,12 @@
 (setq-default tab-width 2)
 (setq tab-stop-list (number-sequence 2 200 2))
 
-(electric-pair-mode 1) ; closes brackets automatically
-
-(global-visual-line-mode t) ;soft wrap for lines
-
-(setq inhibit-startup-screen t)
-(tool-bar-mode 0)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq ring-bell-function 'ignore) ;; stop emacs sounds
-
-(global-hl-line-mode t) ;; highlights current line of cursor
-
-;; opens shell in current buffer
-(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
 (setq frame-resize-pixelwise t)
 (set-frame-position (selected-frame) 4 5)
 
-(winner-mode 1) ;; history of window configurations to back to previous layout
-
-(setq make-backup-files nil) ; stop creating backup ~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
-(setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
-
-
-;; highlights line indents, does not work globally
-(use-package highlight-indentation
-	:ensure t
-	:config
-	(highlight-indentation-mode t))
-
-;; indents lines even with copy and paste
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (global-aggressive-indent-mode 1)
-  )
-
-;;relative line numbers
-(use-package linum-relative
-	:ensure t)
-	
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
-
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-;; find files opens vertically
-(use-package ido-vertical-mode
-	:ensure t
-	:config
-	(ido-vertical-mode 1)
-	)
 
 (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
-
-(windmove-default-keybindings) ;;shift key to move between windwos
 
 
 ;; need to modify ox-reveal, not working properly
@@ -95,10 +67,6 @@
 (use-package json-mode
   :ensure t) ;; additional syntax highlighting on top of js-mode
 
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode t))
 
 #+end_src
 
@@ -128,6 +96,21 @@
 
 (use-package zenburn-theme
   :ensure t)
+
+#+end_src
+* Ido
+#+begin_src emacs-lisp
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
+
+;; find files opens vertically
+(use-package ido-vertical-mode
+	:ensure t
+	:config
+	(ido-vertical-mode 1)
+	)
 
 #+end_src
 * Org Mode
@@ -177,7 +160,10 @@
 		(global-evil-surround-mode 1)
 		)
   )
-;;(setq evil-default-state 'emacs) ;; changes default state to emacs
+
+;;relative line numbers
+(use-package linum-relative
+	:ensure t)
 
 	#+end_src
 	
@@ -273,6 +259,13 @@
 		))
 
 #+end_src
+* Shell
+#+begin_src emacs-lisp
+
+;; opens shell in current buffer
+(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+
+#+end_src
 * Powerline
 #+begin_src emacs-lisp
 
@@ -296,5 +289,39 @@
     (ac-config-default)
     (global-auto-complete-mode t)
     ))
+
+#+end_src
+* Indent related
+#+begin_src emacs-lisp
+
+;; highlights line indents, does not work globally
+(use-package highlight-indentation
+	:ensure t
+	:config
+	(highlight-indentation-mode t))
+
+;; indents lines even with copy and paste
+(use-package aggressive-indent
+  :ensure t
+  :config
+  (global-aggressive-indent-mode 1)
+  )
+
+#+end_src
+* Which key
+#+begin_src emacs-lisp
+	
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+
+#+end_src
+* Flycheck
+#+begin_src emacs-lisp
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
 
 #+end_src
