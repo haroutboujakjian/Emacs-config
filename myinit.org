@@ -104,6 +104,7 @@
 (setq org-redisplay-inline-images t)
 (setq org-toggle-inline-images t)
 
+(add-hook 'org-mode-hook 'org-indent-mode)
 	#+end_src
 * Evil
 	#+begin_src emacs-lisp
@@ -308,7 +309,6 @@
 	(setq-default tab-width 2)
 	(setq tab-stop-list (number-sequence 2 200 2))
 
-
 	;; need to modify ox-reveal, not working properly
 	(use-package ox-reveal
 		:ensure ox-reveal
@@ -328,7 +328,6 @@
 	;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
 	;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
 	;; 		))
-
 
 	#+end_src
 
