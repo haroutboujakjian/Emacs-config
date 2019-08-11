@@ -1,2 +1,2 @@
 * Emacs configuration
-Init.el contains my current emacs configuration for people who are interested. I am always testing out new packages and continually attempting to improve my workflow.
+miyinit.org contains my current emacs configuration for people who are interested. init.el contains a reference to myinit.org. I am always testing out new packages and continually attempting to improve my workflow.
