@@ -3,170 +3,170 @@
 * General 
 #+begin_src emacs-lisp
 
-(electric-pair-mode 1) ; closes brackets automatically
+  (electric-pair-mode 1) ; closes brackets automatically
 
-(global-visual-line-mode t) ;soft wrap for lines
+  (global-visual-line-mode t) ;soft wrap for lines
 
-(global-hl-line-mode t) ;; highlights current line of cursor
+  (global-hl-line-mode t) ;; highlights current line of cursor
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(setq inhibit-startup-screen t)
-(tool-bar-mode 0)
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq ring-bell-function 'ignore) ;; stop emacs sounds
+  (setq inhibit-startup-screen t)
+  (tool-bar-mode 0)
+  (fset 'yes-or-no-p 'y-or-n-p)
+  (setq ring-bell-function 'ignore) ;; stop emacs sounds
 
-(setq make-backup-files nil) ; stop creating backup ~ files
-(setq auto-save-default nil) ; stop creating #autosave# files
-(setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
+  (setq make-backup-files nil) ; stop creating backup ~ files
+  (setq auto-save-default nil) ; stop creating #autosave# files
+  (setq create-lockfiles nil) ; stop creating temporary symbolic link file #something
 
-(winner-mode 1) ;; history of window configurations to back to previous layout
+  (winner-mode 1) ;; history of window configurations to back to previous layout
 
-(windmove-default-keybindings) ;;shift key to move between windwos
+  (windmove-default-keybindings) ;;shift key to move between windwos
 
-;; (setq frame-resize-pixelwise t)
-;; (set-frame-position (selected-frame) 4 5)
+  ;; (setq frame-resize-pixelwise t)
+  ;; (set-frame-position (selected-frame) 4 5)
 
-(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
+  (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
 #+end_src
 
 * Linux specific config
 	#+begin_src emacs-lisp
 
-(cond
- ((string-equal system-type "gnu/linux")
-  (progn
-    (set-frame-font "Ubuntu Mono-12")
+    (cond
+     ((string-equal system-type "gnu/linux")
+      (progn
+        (set-frame-font "Ubuntu Mono-12")
 		
-		;; section for pdf viewer
-		(use-package pdf-tools
-			:ensure t)
+        ;; section for pdf viewer
+        (use-package pdf-tools
+          :ensure t)
 
-		(use-package org-pdfview
-			:ensure t)
+        (use-package org-pdfview
+          :ensure t)
 
-		(pdf-tools-install)
-		(require 'pdf-tools)
-		(require 'org-pdfview)
-		)))
+        (pdf-tools-install)
+        (require 'pdf-tools)
+        (require 'org-pdfview)
+        )))
 
 	#+end_src
 * Themes
 	#+begin_src emacs-lisp
 
-(use-package zenburn-theme
-  :ensure t)
+    (use-package zenburn-theme
+      :ensure t)
 
 	#+end_src
 * Ido
 	#+begin_src emacs-lisp
 
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
+    (setq ido-enable-flex-matching t)
+    (setq ido-everywhere t)
+    (ido-mode 1)
 
-;; find files opens vertically
-(use-package ido-vertical-mode
-	:ensure t
-	:config
-	(ido-vertical-mode 1)
-	)
+    ;; find files opens vertically
+    (use-package ido-vertical-mode
+      :ensure t
+      :config
+      (ido-vertical-mode 1)
+      )
 
 	#+end_src
 * Org Mode
 	#+begin_src emacs-lisp
 
-(use-package org
-	:ensure t
-	:pin org)
+    (use-package org
+      :ensure t
+      :pin org)
 
-;; Org-mode bullets format
-(use-package org-bullets
-	:ensure t
-	:config
-	(add-hook 'org-mode-hook 'org-bullets-mode))
+    ;; Org-mode bullets format
+    (use-package org-bullets
+      :ensure t
+      :config
+      (add-hook 'org-mode-hook 'org-bullets-mode))
 
-;; org mode ipython
-(use-package ob-ipython
-	:ensure t)
+    ;; org mode ipython
+    (use-package ob-ipython
+      :ensure t)
 
-;; languages where code executes in org mode
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((ipython . t)
-	 ))
+    ;; languages where code executes in org mode
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '((ipython . t)
+       ))
 
-;; evaluates code block in org mode with additional confirmation
-(setq org-confirm-babel-evaluate nil)
+    ;; evaluates code block in org mode without additional confirmation
+    (setq org-confirm-babel-evaluate nil)
 
-;; setting for org mode inline images. does not display automatically.
-(setq org-display-inline-images t)
-(setq org-startup-with-inline-images t)
-(setq org-redisplay-inline-images t)
-(setq org-toggle-inline-images t)
+    ;; setting for org mode inline images. does not display automatically.
+    (setq org-display-inline-images t)
+    (setq org-startup-with-inline-images t)
+    (setq org-redisplay-inline-images t)
+    (setq org-toggle-inline-images t)
 
-(add-hook 'org-mode-hook 'org-indent-mode)
+    (add-hook 'org-mode-hook 'org-indent-mode)
 	#+end_src
 * Evil
 	#+begin_src emacs-lisp
 
-(use-package evil
-  :ensure t
-  :config
-  (evil-mode 1)
+    (use-package evil
+      :ensure t
+      :config
+      (evil-mode 1)
 
-  (use-package evil-surround
-		:ensure t
-		:config
-		(global-evil-surround-mode 1)
-		)
-  )
+      (use-package evil-surround
+        :ensure t
+        :config
+        (global-evil-surround-mode 1)
+        )
+      )
 
-;;relative line numbers
-(use-package linum-relative
-	:ensure t)
+    ;;relative line numbers
+    (use-package linum-relative
+      :ensure t)
 
 	#+end_src
 	
 * Programming Languages
 ** Python
 	 #+begin_src emacs-lisp 
-	
- (use-package jedi
-   :ensure t
-   :init
-   (add-hook 'python-mode-hook 'jedi:setup))
- (add-hook 'pyvenv-mode-hook 'jedi:setup)
 
- ;; ipython shell with PyQt5 plot backend
- (require 'python)
- (setq python-shell-interpreter "ipython")
- (setq python-shell-interpreter-args "--simple-prompt -i --pylab")
+     (use-package jedi
+       :ensure t
+       :init
+       (add-hook 'python-mode-hook 'jedi:setup))
+     (add-hook 'pyvenv-mode-hook 'jedi:setup)
+
+     ;; ipython shell with PyQt5 plot backend
+     (require 'python)
+     (setq python-shell-interpreter "ipython")
+     (setq python-shell-interpreter-args "--simple-prompt -i --pylab")
 
 	 #+end_src
 
 ** R/ESS
-	 
+
 	 #+begin_src emacs-lisp 
 
- (use-package ess ;; statistical packages
-   :ensure t
-   :init
-   (require 'ess-site))
-	
+     (use-package ess ;; statistical packages
+       :ensure t
+       :init
+       (require 'ess-site))
+
 	 #+end_src
 
 ** Scala
 
 	 #+begin_src emacs-lisp
 
- (use-package ensime
-   :ensure t
-   :config
-   (add-to-list 'exec-path "/usr/local/bin")
-	 )
- (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+     (use-package ensime
+       :ensure t
+       :config
+       (add-to-list 'exec-path "/usr/local/bin")
+       )
+     (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 
 	 #+end_src
 
@@ -174,52 +174,52 @@
 ** Web Mode
 	#+begin_src emacs-lisp
 
-(use-package web-mode
-  :ensure t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-	(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-	(setq web-mode-enable-current-column-highlight t)
-  (setq web-mode-ac-sources-alist
-				'(("css" . (ac-source-css-property))
-					("html" . (ac-source-words-in-buffer ac-source-abbrev))
-					("js" . (ac-js2-mode))))
-  )
+    (use-package web-mode
+      :ensure t
+      :config
+      (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+      (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+      (setq web-mode-enable-current-column-highlight t)
+      (setq web-mode-ac-sources-alist
+            '(("css" . (ac-source-css-property))
+              ("html" . (ac-source-words-in-buffer ac-source-abbrev))
+              ("js" . (ac-js2-mode))))
+      )
 
-(defun my-web-mode-hook()
-	"Hooks for Web mode. Adjust indents"
-	(setq web-mode-markup-indent-offset 2)
-	(setq web-mode-css-indent-offset 2)
-	(setq web-mode-code-indent-offset 2)
-	)
-(add-hook 'web-mode-hook 'my-web-mode-hook)
+    (defun my-web-mode-hook()
+      "Hooks for Web mode. Adjust indents"
+      (setq web-mode-markup-indent-offset 2)
+      (setq web-mode-css-indent-offset 2)
+      (setq web-mode-code-indent-offset 2)
+      )
+    (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 	#+end_src
 ** JSON
 	 #+begin_src emacs-lisp
 
- (use-package json-mode
-   :ensure t) ;; additional syntax highlighting on top of js-mode
+     (use-package json-mode
+       :ensure t) ;; additional syntax highlighting on top of js-mode
 
 	 #+end_src
 * Search Engine
 	#+begin_src emacs-lisp
 
-(use-package engine-mode
-  :defer 3
-  :config
-  (defengine duckduckgo
-    "https://duckduckgo.com/?q=%s"
-    :keybinding "d")
+    (use-package engine-mode
+      :defer 3
+      :config
+      (defengine duckduckgo
+        "https://duckduckgo.com/?q=%s"
+        :keybinding "d")
 
-  (defengine github
-    "https://github.com/search?ref=simplesearch&q=%s"
-    :keybinding "g")
+      (defengine github
+        "https://github.com/search?ref=simplesearch&q=%s"
+        :keybinding "g")
 
-	(defengine stack-overflow
-    "https://stackoverflow.com/search?q=%s"
-    :keybinding "s")
-  (engine-mode t))
+      (defengine stack-overflow
+        "https://stackoverflow.com/search?q=%s"
+        :keybinding "s")
+      (engine-mode t))
 
 	#+end_src
 * Magit
@@ -236,67 +236,67 @@
 * Shell
 	#+begin_src emacs-lisp
 
-;; opens shell in current buffer
-(push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+    ;; opens shell in current buffer
+    (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
 	#+end_src
 * Powerline
 	#+begin_src emacs-lisp
 
-(use-package doom-modeline
-	:ensure t
-	:hook
-	(after-init . doom-modeline-mode)
-	)
+    (use-package doom-modeline
+      :ensure t
+      :hook
+      (after-init . doom-modeline-mode)
+      )
 
-(use-package all-the-icons
-	:ensure t)
+    (use-package all-the-icons
+      :ensure t)
 
 	#+end_src
 * Autocomplete
 	#+begin_src emacs-lisp
 
-(use-package auto-complete
-  :ensure t
-  :init
-  (progn
-    (ac-config-default)
-    (global-auto-complete-mode t)
-    ))
+    (use-package auto-complete
+      :ensure t
+      :init
+      (progn
+        (ac-config-default)
+        (global-auto-complete-mode t)
+        ))
 
 	#+end_src
 * Indent related
 	#+begin_src emacs-lisp
 
-;; highlights line indents, does not work globally
-(use-package highlight-indentation
-	:ensure t
-	:config
-	(highlight-indentation-mode t))
+    ;; highlights line indents, does not work globally
+    (use-package highlight-indentation
+      :ensure t
+      :config
+      (highlight-indentation-mode t))
 
-;; indents lines even with copy and paste
-(use-package aggressive-indent
-  :ensure t
-  :config
-  (global-aggressive-indent-mode 1)
-  )
+    ;; indents lines even with copy and paste
+    (use-package aggressive-indent
+      :ensure t
+      :config
+      (global-aggressive-indent-mode 1)
+      )
 
 	#+end_src
 * Which key
 	#+begin_src emacs-lisp
 	
-(use-package which-key
-  :ensure t
-  :config (which-key-mode))
+    (use-package which-key
+      :ensure t
+      :config (which-key-mode))
 
 	#+end_src
 * Flycheck
 	#+begin_src emacs-lisp
 
-(use-package flycheck
-  :ensure t
-  :init
-  (global-flycheck-mode t))
+    (use-package flycheck
+      :ensure t
+      :init
+      (global-flycheck-mode t))
 
 	#+end_src
 * TODO Still need to move these arounds
