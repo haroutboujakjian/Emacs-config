@@ -1,7 +1,7 @@
 #+STARTUP: overview
 
 * General 
-	#+begin_src emacs-lisp
+#+begin_src emacs-lisp
 
 (electric-pair-mode 1) ; closes brackets automatically
 
@@ -22,12 +22,12 @@
 
 (windmove-default-keybindings) ;;shift key to move between windwos
 
-	;; (setq frame-resize-pixelwise t)
-	;; (set-frame-position (selected-frame) 4 5)
+;; (setq frame-resize-pixelwise t)
+;; (set-frame-position (selected-frame) 4 5)
 
-	(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
+(defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
-	#+end_src
+#+end_src
 
 * Linux specific config
 	#+begin_src emacs-lisp
