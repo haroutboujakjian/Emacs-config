@@ -1,5 +1,22 @@
 #+STARTUP: overview
 
+* Package
+#+begin_src emacs-lisp
+  (require 'package)
+  (setq package-enable-at-startup nil)
+  (setq package-archives
+        '(("melpa" . "https://melpa.org/packages/")
+          ("melpa-stable" . "https://stable.melpa.org/packages/")
+          ("gnu" . "https://elpa.gnu.org/packages/")
+          ("org" . "http://orgmode.org/elpa/")))
+        
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+  
+  (eval-when-compile (require 'use-package))
+
+#+end_src
 * General 
 #+begin_src emacs-lisp
 
