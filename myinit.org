@@ -44,6 +44,8 @@
   ;; (setq frame-resize-pixelwise t)
   ;; (set-frame-position (selected-frame) 4 5)
 
+  (global-set-key [f8] (lambda () (interactive) (find-file "~/.emacs.d/myinit.org")))
+
   (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
 #+end_src
