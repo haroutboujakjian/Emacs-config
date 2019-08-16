@@ -46,6 +46,20 @@
 
   (global-set-key [f8] (lambda () (interactive) (find-file "~/.emacs.d/myinit.org")))
 
+  (use-package buffer-move
+    :ensure t
+    )
+
+  (global-set-key (kbd "C-c u") 'buf-move-up)
+  (global-set-key (kbd "C-c d") 'buf-move-down)
+  (global-set-key (kbd "C-c l") 'buf-move-left)
+  (global-set-key (kbd "C-c r") 'buf-move-right)
+
+  (use-package smooth-scrolling
+    :ensure t
+    :config
+    (smooth-scrolling-mode 1))
+
   (defalias 'list-buffers 'ibuffer-other-window) ;; creates buffer list in other window
 
 #+end_src
