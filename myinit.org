@@ -324,8 +324,14 @@
     (use-package flycheck
       :ensure t
       :init
-      (global-flycheck-mode t))
+      (global-flycheck-mode t)
+      )
 
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+    (custom-set-variables
+     '(flycheck-python-flake8-executable "python3")
+     '(flycheck-python-pylint-executable "python3")
+     )
 	#+end_src
 * TODO Still need to move these arounds
 
