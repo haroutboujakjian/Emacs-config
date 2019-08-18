@@ -158,7 +158,10 @@
 
     ;;relative line numbers
     (use-package linum-relative
-      :ensure t)
+      :ensure t
+      :config
+      (setq linum-relative-current-symbol ""))
+
 
 	#+end_src
 	
