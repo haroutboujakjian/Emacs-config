@@ -166,11 +166,10 @@
 ** Python
 	 #+begin_src emacs-lisp 
 
-     (use-package jedi
+     (use-package py-autopep8
        :ensure t
        :init
-       (add-hook 'python-mode-hook 'jedi:setup))
-     (add-hook 'pyvenv-mode-hook 'jedi:setup)
+       (add-hook 'python-mode-hook 'py-autopep8-enable-on-save))
 
      ;; ipython shell with PyQt5 plot backend
      (require 'python)
