@@ -336,33 +336,34 @@
 
 	#+begin_src emacs-lisp
 
-	(use-package exec-path-from-shell
-		:ensure t)
-	(when (memq window-system '(mac ns x))
-		(exec-path-from-shell-initialize))
+    (use-package exec-path-from-shell
+      :ensure t)
+    (exec-path-from-shell-initialize)
+    (when (memq window-system '(mac ns x))
+      (exec-path-from-shell-initialize))
 
-	(setq-default tab-width 2)
-	(setq tab-stop-list (number-sequence 2 200 2))
+    (setq-default tab-width 2)
+    (setq tab-stop-list (number-sequence 2 200 2))
 
-	;; need to modify ox-reveal, not working properly
-	(use-package ox-reveal
-		:ensure ox-reveal
-		:config
-		(require 'ox-reveal)
-		(setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
-		(setq org-reveal-mathjax t))
+    ;; need to modify ox-reveal, not working properly
+    (use-package ox-reveal
+      :ensure ox-reveal
+      :config
+      (require 'ox-reveal)
+      (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/3.0.0/")
+      (setq org-reveal-mathjax t))
 
-	(use-package htmlize
-		:ensure t)
+    (use-package htmlize
+      :ensure t)
 
-	;; (use-package js2-mode
-	;;   :ensure t
-	;;   :ensure ac-js2
-	;;   :init
-	;;   (progn
-	;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
-	;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
-	;; 		))
+    ;; (use-package js2-mode
+    ;;   :ensure t
+    ;;   :ensure ac-js2
+    ;;   :init
+    ;;   (progn
+    ;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
+    ;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
+    ;; 		))
 
 	#+end_src
 
