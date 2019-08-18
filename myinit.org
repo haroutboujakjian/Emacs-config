@@ -228,13 +228,6 @@
     (add-hook 'web-mode-hook 'my-web-mode-hook)
 
 	#+end_src
-** JSON
-	 #+begin_src emacs-lisp
-
-     (use-package json-mode
-       :ensure t) ;; additional syntax highlighting on top of js-mode
-
-	 #+end_src
 * Search Engine
 	#+begin_src emacs-lisp
 
