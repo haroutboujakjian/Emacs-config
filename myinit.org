@@ -128,6 +128,7 @@
     (org-babel-do-load-languages
      'org-babel-load-languages
      '((ipython . t)
+       (R . t)
        ))
 
     ;; evaluates code block in org mode without additional confirmation
