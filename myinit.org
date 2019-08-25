@@ -139,6 +139,19 @@
     (setq org-redisplay-inline-images t)
     (setq org-toggle-inline-images t)
 
+    ;; syntax highlighting in org mode
+    (require 'ox-latex)
+    (add-to-list 'org-latex-packages-alist '("" "minted"))
+    (setq org-latex-listings 'minted)
+
+    (setq org-latex-pdf-process
+          '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+            "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
+
+    (add-to-list 'org-latex-minted-langs
+                 '(ipython "python"))
+
     (add-hook 'org-mode-hook 'org-indent-mode)
 	#+end_src
 * Evil
