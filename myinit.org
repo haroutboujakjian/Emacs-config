@@ -347,7 +347,15 @@
      '(flycheck-python-flake8-executable "python3")
      '(flycheck-python-pylint-executable "python3")
      )
+
+
 	#+end_src
+* Latex
+#+begin_src emacs-lisp
+  (use-package tex
+    :ensure auctex)
+
+#+end_src
 * TODO Still need to move these arounds
 
 	#+begin_src emacs-lisp
