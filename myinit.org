@@ -205,6 +205,11 @@
        :init
        (require 'ess-site))
 
+     (use-package polymode
+       :ensure t)
+
+     (use-package poly-R
+       :ensure t)
 	 #+end_src
 
 ** Scala
