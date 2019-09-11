@@ -353,7 +353,9 @@
 * Latex
 #+begin_src emacs-lisp
   (use-package tex
-    :ensure auctex)
+    :ensure auctex
+    :config
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))))
 
 #+end_src
 * TODO Still need to move these arounds
