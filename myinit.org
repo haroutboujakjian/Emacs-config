@@ -74,7 +74,12 @@
      ((string-equal system-type "gnu/linux")
       (progn
         (set-frame-font "Ubuntu Mono-12")
-		
+        )))
+
+    (when (memq window-system '(mac ns))
+      ;; solves issue of not buildling in macOS
+      (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig"))
+
         ;; section for pdf viewer
         (use-package pdf-tools
           :ensure t)
@@ -85,7 +90,7 @@
         (pdf-tools-install)
         (require 'pdf-tools)
         (require 'org-pdfview)
-        )))
+
 
 	#+end_src
 * Themes
