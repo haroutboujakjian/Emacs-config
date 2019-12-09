@@ -386,6 +386,10 @@
     (setq-default tab-width 2)
     (setq tab-stop-list (number-sequence 2 200 2))
 
+    (use-package neotree
+      :ensure t)
+    (global-set-key [f2] 'neotree-toggle)
+
     ;; need to modify ox-reveal, not working properly
     (use-package ox-reveal
       :ensure ox-reveal
