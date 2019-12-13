@@ -403,14 +403,14 @@
     (use-package htmlize
       :ensure t)
 
-    ;; (use-package js2-mode
-    ;;   :ensure t
-    ;;   :ensure ac-js2
-    ;;   :init
-    ;;   (progn
-    ;; 		(add-hook 'js-mode-hook 'js2-minor-mode)
-    ;; 		(add-hook 'js2-mode-hook 'ac-js2-mode)
-    ;; 		))
+    (use-package js2-mode
+      :ensure t
+      :ensure ac-js2
+      :init
+      (progn
+        (add-hook 'js-mode-hook 'js2-minor-mode)
+        (add-hook 'js2-mode-hook 'ac-js2-mode)
+        ))
 
 	#+end_src
 
