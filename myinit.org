@@ -80,16 +80,18 @@
       ;; solves issue of not buildling in macOS
       (setenv "PKG_CONFIG_PATH" "/usr/local/lib/pkgconfig:/usr/local/Cellar/libffi/3.2.1/lib/pkgconfig"))
 
-        ;; section for pdf viewer
-        (use-package pdf-tools
-          :ensure t)
+    (setq mac-command-modifier 'meta)
 
-        (use-package org-pdfview
-          :ensure t)
+    ;; section for pdf viewer
+    (use-package pdf-tools
+      :ensure t)
 
-        (pdf-tools-install)
-        (require 'pdf-tools)
-        (require 'org-pdfview)
+    (use-package org-pdfview
+      :ensure t)
+
+    (pdf-tools-install)
+    (require 'pdf-tools)
+    (require 'org-pdfview)
 
 
 	#+end_src
