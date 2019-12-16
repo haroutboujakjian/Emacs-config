@@ -259,6 +259,14 @@
       )
     (add-hook 'web-mode-hook 'my-web-mode-hook)
 
+    ;; turn off electric pair curly bracket for web mode which already closes curly brackets
+    (add-hook
+     'web-mode-hook
+     (lambda ()
+       (setq-local electric-pair-inhibit-predicate
+                   `(lambda (c)
+                      (if (char-equal c ?{) t (,electric-pair-inhibit-predicate c))))))
+
 	#+end_src
 * Search Engine
 	#+begin_src emacs-lisp
