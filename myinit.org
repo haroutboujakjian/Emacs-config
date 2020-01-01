@@ -206,6 +206,14 @@
 
      (use-package pyvenv
        :ensure t)
+
+
+     (use-package elpy
+       :ensure t
+       :custom (elpy-rpc-backend "jedi")
+       :config
+       (elpy-enable)
+       )
 	 #+end_src
 
 ** R/ESS
